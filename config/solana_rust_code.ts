@@ -1,5 +1,5 @@
 
-export const key_to_code: { [key: string]: string; } = {
+export const solanaRustKeyToCode: { [key: string]: string; } = {
   "random_account": `
 use solana_sdk::signature::Keypair;
 
@@ -7,6 +7,7 @@ Keypair::new()
   `,
   "gen_mnemonic": `
 use bip39::Mnemonic;
+
 Mnemonic::generate(word_count)
     .expect("word count not valid")
     .to_string()
@@ -37,20 +38,26 @@ fn main() {
     get_keypair_with(&mnemonic, idx);
   }
 }
-
+`,
+  "sign_messages": `
+pub fn sign(keypair: Keypair, msg: String) -> String {
+    keypair.sign_message(&msg.as_bytes()).to_string()
+}
 `
 };
 
-export const key_to_title: { [key: string]: string; } = {
+export const solanaRustKeyToTitle: { [key: string]: string; } = {
   "random_account": 'Random Account',
   "gen_mnemonic": "Generate Mnemonic",
   "mnemonic_account": "Gen Accounts from mnemonic",
+  "sign_messages": "Sign Message"
 };
 
 
 
-export const codeKeys = [
+export const solanaRustCodeKeys = [
   'random_account',
   'gen_mnemonic',
-  'mnemonic_account'
+  'mnemonic_account',
+  'sign_messages'
 ]

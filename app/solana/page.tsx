@@ -7,8 +7,7 @@ import { Chip } from "@nextui-org/chip";
 import { useDisclosure } from "@nextui-org/modal";
 import CodeModal from "@/components/code-modal";
 import { useState } from "react";
-
-import {codeKeys, key_to_code, key_to_title} from "@/config/code";
+import { solanaRustCodeKeys, solanaRustKeyToTitle } from "@/config/solana_rust_code";
 
 const WalletMultiButtonDynamic = dynamic(
   async () =>
@@ -38,11 +37,11 @@ export default function SolanaPage() {
           Account
         </Link>
         <div className="#account__link pb-2 flex flex-wrap gap-2">
-          {codeKeys.map(key=> (
+          {solanaRustCodeKeys.map(key=> (
             <Chip color="default" className='p-2 cursor-pointer' onClick={()=> {
               setCodeKey(`${key}`)
               onOpen()
-            }}>{key_to_title[key]||''}</Chip>
+            }}>{solanaRustKeyToTitle[key]||''}</Chip>
           ))}
         </div>
       </div>

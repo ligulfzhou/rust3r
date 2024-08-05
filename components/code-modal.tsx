@@ -8,7 +8,7 @@ import {
   ModalFooter
 } from "@nextui-org/modal";
 import MyCodeBlock from "@/components/my-code-block";
-import { key_to_code, key_to_title } from "@/config/code";
+import { solanaRustKeyToCode, solanaRustKeyToTitle } from "@/config/solana_rust_code";
 
 
 type size_opts = "sm" | "md" | "lg" | "xl" | "2xl" | "full" | "xs" | "3xl" | "4xl" | "5xl" | undefined;
@@ -20,7 +20,7 @@ function CodeModal({ codeKey, language = "rust", size, isOpen, onClose }: {
   isOpen: boolean,
   onClose: () => void
 }) {
-  let code = key_to_code[codeKey] || "";
+  let code = solanaRustKeyToCode[codeKey] || "";
 
   return (
     <Modal
@@ -31,7 +31,7 @@ function CodeModal({ codeKey, language = "rust", size, isOpen, onClose }: {
       <ModalContent>
         {(onClose: any) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">{key_to_title[codeKey] || ""}</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">{solanaRustKeyToTitle[codeKey] || ""}</ModalHeader>
             <ModalBody>
               <MyCodeBlock code={code} language={language}></MyCodeBlock>
             </ModalBody>
