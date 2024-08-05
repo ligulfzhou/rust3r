@@ -64,9 +64,13 @@ pub fn from_base58_str(str: &str)-> anyhow::Result<Keypair> {
 
 
   "sign_messages": `
-pub fn sign(keypair: Keypair, msg: String) -> String {
-    keypair.sign_message(&msg.as_bytes()).to_string()
-}
+use solana_sdk::signature::{Keypair, Signature};
+
+let keypair = Keypair::new();
+let msg = "message..";
+
+let sig: Signature = keypair.sign_message(&msg.as_bytes());
+sig.verify(&keypair.pubkey().to_bytes(), &msg.as_bytes());
 `
 };
 
@@ -75,7 +79,7 @@ export const solanaRustKeyToTitle: { [key: string]: string; } = {
   "gen_mnemonic": "Generate Mnemonic",
   "mnemonic_keypair": "Gen Keypair from mnemonic",
   "keypair_bytes_base58": "Keypair from bytes or base58 string",
-  "sign_messages": "Sign Message"
+  "sign_messages": "Sign and verify Message"
 };
 
 

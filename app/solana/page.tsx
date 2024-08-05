@@ -7,7 +7,7 @@ import { Chip } from "@nextui-org/chip";
 import { useDisclosure } from "@nextui-org/modal";
 import CodeModal from "@/components/code-modal";
 import { useState } from "react";
-import { solanaRustCodeKeys, solanaRustKeyToTitle } from "@/config/solana_rust_code";
+import {typeToCodes, codeKeyToTitle} from "@/config/solana/rust"
 
 const WalletMultiButtonDynamic = dynamic(
   async () =>
@@ -31,20 +31,21 @@ export default function SolanaPage() {
         </div>
       </div>
 
-      {/* 账号 */}
-      <div className="mt-4 rounded p-2 border-1">
-        <Link className={`${subtitle()} account__link font-semibold pl-2`} href="#account__link">
-          Account
-        </Link>
-        <div className="#account__link pb-2 flex flex-wrap gap-2">
-          {solanaRustCodeKeys.map(key=> (
-            <Chip color="default" className='p-2 cursor-pointer' onClick={()=> {
-              setCodeKey(`${key}`)
-              onOpen()
-            }}>{solanaRustKeyToTitle[key]||''}</Chip>
-          ))}
+      {typeToCodes.map(({type, codeKeys})=> (
+        <div className="mt-4 rounded p-2 border-1">
+          <Link className={`${subtitle()} account__link font-semibold pl-2`} href="#account__link">
+            {type}
+          </Link>
+          <div className="#account__link pb-2 flex flex-wrap gap-2">
+            {codeKeys.map(key => (
+              <Chip color="default" className="p-2 cursor-pointer" onClick={() => {
+                setCodeKey(`${key}`);
+                onOpen();
+              }}>{codeKeyToTitle[key] || ""}</Chip>
+            ))}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }
