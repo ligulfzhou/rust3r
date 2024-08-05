@@ -31,7 +31,7 @@ function CodeModal({ codeKey, language = "rust", size, isOpen, onClose }: {
         {(onClose: any) => (
           <>
             <ModalHeader className="flex flex-col gap-1">{codeKeyToTitle[codeKey] || ""}</ModalHeader>
-            <ModalBody>
+            <ModalBody className='max-h-dvh'>
               <MyCodeBlock code={ codeKeyToCode[codeKey] || ""} language={language}></MyCodeBlock>
             </ModalBody>
             <ModalFooter>
