@@ -1,18 +1,27 @@
 
 export const solanaRustKeyToCode: { [key: string]: string; } = {
-  "random_account": `
+  "random_keypair": `
 use solana_sdk::signature::Keypair;
 
-Keypair::new()
+pub fn random_keypair()-> Keypair {
+    Keypair::new()
+}
   `,
+
+
+
   "gen_mnemonic": `
 use bip39::Mnemonic;
 
-Mnemonic::generate(word_count)
-    .expect("word count not valid")
-    .to_string()
+pub fn generate_mnemonic_code(word_count: usize) -> String {
+    Mnemonic::generate(word_count)
+        .expect("word count not valid")
+        .to_string()
+}
 `,
-  "mnemonic_account": `
+
+
+  "mnemonic_keypair": `
 use bip39::Mnemonic;
 use solana_sdk::{
     derivation_path::DerivationPath,
@@ -39,6 +48,21 @@ fn main() {
   }
 }
 `,
+
+
+  "keypair_bytes_base58": `
+use solana_sdk::signature::Keypair;
+
+pub fn from_bytes(bs: &[u8]) -> anyhow::Result<Keypair>{
+    Ok(Keypair::from_bytes(bs)?)
+}
+
+pub fn from_base58_str(str: &str)-> anyhow::Result<Keypair> {
+    Ok(Keypair::from_base58_string(str))
+}
+  `,
+
+
   "sign_messages": `
 pub fn sign(keypair: Keypair, msg: String) -> String {
     keypair.sign_message(&msg.as_bytes()).to_string()
@@ -47,17 +71,19 @@ pub fn sign(keypair: Keypair, msg: String) -> String {
 };
 
 export const solanaRustKeyToTitle: { [key: string]: string; } = {
-  "random_account": 'Random Account',
+  "random_keypair": 'Random Keypair',
   "gen_mnemonic": "Generate Mnemonic",
-  "mnemonic_account": "Gen Accounts from mnemonic",
+  "mnemonic_keypair": "Gen Keypair from mnemonic",
+  "keypair_bytes_base58": "Keypair from bytes or base58 string",
   "sign_messages": "Sign Message"
 };
 
 
 
 export const solanaRustCodeKeys = [
-  'random_account',
+  'random_keypair',
   'gen_mnemonic',
-  'mnemonic_account',
+  'mnemonic_keypair',
+  "keypair_bytes_base58",
   'sign_messages'
 ]
