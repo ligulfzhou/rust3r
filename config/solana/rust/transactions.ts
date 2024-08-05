@@ -146,15 +146,36 @@ fn mint_to_spl_token()-> anyhow::Result<()> {
     
     Ok(())
 }
-  `
+  `,
 
+  "get_spl_token_balance": `
+use solana_client::rpc_client::RpcClient;
+use solana_sdk::program_pack::Pack;
+use solana_sdk::pubkey::Pubkey;
+use solana_sdk::signer::Signer;
+use spl_token::state::Account;
+
+fn get_spl_token_balance(mint_account: Pubkey, receiver_account: Pubkey) -> anyhow::Result<u64> {
+    let url = "https://api.devnet.solana.com".to_string();
+    let rpc_client = RpcClient::new(url);
+
+    let associated_token_account = spl_associated_token_account::get_associated_token_address(&receiver_account.pubkey(), &mint_account.pubkey());
+
+    let pda = rpc_client.get_account(&associated_token_account)?;
+    let data = Account::unpack(&pda.data).expect("unpack account.data");
+    println!("data: {:?}", data);
+
+    Ok(data.amount)
+}
+  `
 };
 
 export const solanaRustTxKeyToTitle: { [key: string]: string; } = {
   "send_sol": 'Transfer Sol',
   "create_spl_token": "Create SPL Token",
   "get_spl_associated_token_account": "Get SPL Associated Token Account(PDA)",
-  "mint_spl_token_to_PDA": "Mint SPL Token Account(PDA)",
+  "mint_spl_token_to_PDA": "Mint SPL Token to Account(PDA)",
+  "get_spl_token_balance": "Get SPL Token Balance",
 };
 
 
@@ -162,5 +183,6 @@ export const solanaRustTxCodeKeys = [
   'send_sol',
   'create_spl_token',
   'get_spl_associated_token_account',
-  'mint_spl_token_to_PDA'
+  'mint_spl_token_to_PDA',
+  "get_spl_token_balance"
 ]

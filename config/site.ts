@@ -32,7 +32,7 @@ export const siteConfig = {
     }
   ],
   links: {
-    github: "https://github.com/ligulfzhou",
+    github: "https://github.com/ligulfzhou/rust3r",
     twitter: "https://twitter.com/ligulfzhou",
     docs: "https://nextui.org",
     discord: "https://discord.gg/9b6yyZKmH4",
