@@ -17,7 +17,6 @@ const WalletMultiButtonDynamic = dynamic(
 
 
 export default function SolanaPage() {
-
   const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
   const [codeKey, setCodeKey] = useState<string>('')
 
@@ -46,6 +45,10 @@ export default function SolanaPage() {
           </div>
         </div>
       ))}
+
+      <div className='text-center font-black mt-12 text-xl'>
+        Coming soon for anchor...etc
+      </div>
     </div>
   );
 }
