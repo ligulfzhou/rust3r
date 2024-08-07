@@ -32,7 +32,7 @@ export default function SolanaPage() {
 
       {typeToCodes.map(({type, codeKeys})=> (
         <div className="mt-4 rounded p-2 border-1">
-          <Link className={`${subtitle()} account__link font-semibold pl-2`} href="#account__link">
+          <Link className={`${subtitle()} ${type.toLowerCase()}__link font-semibold pl-2`}>
             {type}
           </Link>
           <div className="#account__link pb-2 flex flex-wrap gap-2">
