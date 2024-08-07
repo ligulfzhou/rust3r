@@ -2,7 +2,7 @@ export const solanaRustStakeKeyToCode: { [key: string]: string; } = {
   "get_validators": `
 use solana_client::rpc_client::RpcClient;
 
-fn main() {
+fn get_validators() {
     let url = "https://api.devnet.solana.com".to_string();
     let rpc_client = RpcClient::new(url);
 
