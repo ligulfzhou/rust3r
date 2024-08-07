@@ -159,10 +159,13 @@ fn get_spl_token_balance(mint_account: Pubkey, receiver_account: Pubkey) -> anyh
     let url = "https://api.devnet.solana.com".to_string();
     let rpc_client = RpcClient::new(url);
 
-    let associated_token_account = spl_associated_token_account::get_associated_token_address(&receiver_account.pubkey(), &mint_account.pubkey());
+    let associated_token_account = spl_associated_token_account::get_associated_token_address(
+        &receiver_account,
+        &mint_account,
+    );
 
-    let pda = rpc_client.get_account(&associated_token_account)?;
-    let data = Account::unpack(&pda.data).expect("unpack account.data");
+    let ata = rpc_client.get_account(&associated_token_account)?;
+    let data = Account::unpack(&ata.data).expect("unpack account.data");
     println!("data: {:?}", data);
 
     Ok(data.amount)
