@@ -1,8 +1,6 @@
 import { solanaRustTxCodeKeys, solanaRustTxKeyToTitle, solanaRustTxKeyToCode } from "./transactions";
 import { solanaRustKeyToCode, solanaRustKeyToTitle, solanaRustCodeKeys } from "./account";
-
-// export * from './account';
-// export * from './transactions'
+import { solanaRustStakeKeyToTitle, solanaRustStakeCodeKeys, solanaRustStakeKeyToCode } from "./stake";
 
 export const typeToCodes = [
   {
@@ -12,15 +10,21 @@ export const typeToCodes = [
   {
     type: "Transaction",
     codeKeys: solanaRustTxCodeKeys
+  },
+  {
+    type: "Stake",
+    codeKeys: solanaRustStakeCodeKeys
   }
 ];
 
 export const codeKeyToTitle = {
-   ...solanaRustKeyToTitle,
-  ...solanaRustTxKeyToTitle
-}
+  ...solanaRustKeyToTitle,
+  ...solanaRustTxKeyToTitle,
+  ...solanaRustStakeKeyToTitle
+};
 
 export const codeKeyToCode = {
   ...solanaRustKeyToCode,
-  ...solanaRustTxKeyToCode
-}
+  ...solanaRustTxKeyToCode,
+  ...solanaRustStakeKeyToCode
+};

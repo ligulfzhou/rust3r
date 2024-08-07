@@ -173,8 +173,8 @@ fn get_spl_token_balance(mint_account: Pubkey, receiver_account: Pubkey) -> anyh
 export const solanaRustTxKeyToTitle: { [key: string]: string; } = {
   "send_sol": 'Transfer Sol',
   "create_spl_token": "Create SPL Token",
-  "get_spl_associated_token_account": "Get SPL Associated Token Account(PDA)",
-  "mint_spl_token_to_PDA": "Mint SPL Token to Account(PDA)",
+  "get_spl_associated_token_account": "Get SPL Associated Token Account(ATA)",
+  "mint_spl_token_to_PDA": "Mint SPL Token to Account(ATA)",
   "get_spl_token_balance": "Get SPL Token Balance",
 };
 
