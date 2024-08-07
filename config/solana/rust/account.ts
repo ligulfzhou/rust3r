@@ -57,8 +57,8 @@ pub fn from_bytes(bs: &[u8]) -> anyhow::Result<Keypair>{
     Ok(Keypair::from_bytes(bs)?)
 }
 
-pub fn from_base58_str(str: &str)-> anyhow::Result<Keypair> {
-    Ok(Keypair::from_base58_string(str))
+pub fn from_base58_str(str: &str)-> Keypair {
+    Keypair::from_base58_string(str)
 }
   `,
 
